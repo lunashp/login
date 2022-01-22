@@ -17,15 +17,15 @@ public class Board extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long BOARD_NUMBER;
-    @Column
+    @Column(length = 100, nullable = false)
     private String BOARD_TITLE;
-    @Column
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String BOARD_CONTENT;
 
-    @Column
+    @Column(length = 10, nullable = false)
     private String BOARD_NICKNAME;
-    @Column
-    private Long BOARD_READCNT;
+//    @Column
+//    private Long BOARD_READCNT;
 
 
 
