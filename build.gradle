@@ -32,6 +32,7 @@ dependencies {
 
     implementation group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-java8time'
 
+    runtimeOnly 'org.webjars:bootstrap:4.5.0'
 
 }
 
