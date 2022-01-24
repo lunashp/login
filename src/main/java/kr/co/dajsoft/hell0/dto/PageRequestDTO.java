@@ -12,4 +12,9 @@ public class PageRequestDTO {
     private int size;
     private String type;
     private String keyword;
+
+    public PageRequestDTO() {
+        page = 1;
+        size = 10;
+    }
 }

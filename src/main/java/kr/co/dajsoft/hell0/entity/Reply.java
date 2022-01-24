@@ -13,22 +13,30 @@ import javax.persistence.*;
 @ToString
 
 public class Reply extends BaseEntity{
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long REPLY_ID;
 
-    private int REPLY_ID; //INT PRIMARY KEY,
-    //private String BOARD_ID ;
-    private String REPLY_PASSWORD ;//INT(4),
-    private String REPLY_CONTENT; // VARCHAR(300),
+    @Column(length = 30, nullable = false)
+    private  String MEMBER_NICKNAME;
 
-    //private String replyer ??????????
+    @Column(length = 300, nullable = false)
+    private  String REPLY_CONTENT;
 
-    @ManyToOne(fetch =FetchType.LAZY)
+    @Column(length = 50, nullable = false)
+    private  String REPLY_IP;
+
+    @Column(length = 3, nullable = false)
+    private  String REPLY_SERCERET;
+
+    @Column(length = 4, nullable = false)
+    private  Long REPLY_PASSWORD;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private Board board;
 
-    // MEMBER_NICKNAME VARCHAR(30),
-    // private String REPLY_IP   VARCHAR(50),
-    //REPLY_SECRET VARCHAR(3) DEFAULT 'N' CHECK(REPLY_SECRET IN ('Y', 'N')),
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Member member;
 
 }
