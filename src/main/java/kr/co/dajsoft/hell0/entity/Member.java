@@ -13,26 +13,27 @@ import java.util.List;
 @ToString
 public class Member extends BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String MEMBER_NICKNAME;
+    private String member_NICKNAME;
 
     @Column(length = 200, nullable = false)
-    private  String MEMBER_PW;
+    private  String member_PW;
 
     @Column(length = 30, nullable = false)
-    private  String MEMBER_NAME;
+    private  String member_NAME;
 
     @Column(length = 200, nullable = false)
-    private  String MEMBER_EMAIL;
+    private  String member_EMAIL;
 
     @Column(length = 11, nullable = false)
-    private  String MEMBER_PHONE;
+    private  String member_PHONE;
 
     @Column(length = 3, nullable = false)
-    private  String MEMBER_GENDER;
+    private  String member_GENDER;
 
     @Column(length = 600)
-    private  String MEMBER_ADDRESS;
+    private  String member_ADDRESS;
+
+    private String writer;
 
     @OneToMany
     private List<Board> board;

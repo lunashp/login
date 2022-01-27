@@ -15,22 +15,14 @@ import java.time.LocalDateTime;
 @Getter
 public class BaseEntity {
     @CreatedDate
-    @Column(name = "MEMBER_JOINDATE", updatable = false)
-    private LocalDateTime MEMBER_JOINDATE;
+    @Column(name = "regdate", updatable = false)
+    private LocalDateTime regDate;
 
     @LastModifiedDate
-    @Column(name = "MEMBER_LOGINDATE")
-    private LocalDateTime MEMBER_LOGINDATE;
-
-    @LastModifiedDate
-    @Column(name = "BOARD_WRITEDATE")
-    private LocalDateTime BOARD_WRITEDATE;
-
-    @LastModifiedDate
-    @Column(name = "REPLY_WRITHDATE")
-    LocalDateTime REPLY_WRITHDATE;
+    @Column(name = "moddate")
+    private LocalDateTime modDate;
 
 
     @Column(length = 50, nullable = false)
-    private  String MEMBER_IP;
+    private  String ip;
 }
