@@ -1,26 +1,28 @@
 package kr.co.dajsoft.hell0.dto;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-@Data
-@ToString
 @Builder
-@AllArgsConstructor
+@Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class BoardDTO {
 
-    private Long BOARD_NUMBER;
-    private String BOARD_TITLE;
-    private String BOARD_CONTENT;
+ private int board_NUMBER;
+ private String board_TITLE;
+ private String  board_CONTENT;
+ private int board_READCNT;
+ private String board_NICKNAME;
 
-    private String BOARD_NICKNAME;
+ private String member_EMAIL;
 
+ private LocalDateTime member_JOINDATE;
+ private LocalDateTime member_LOGINDATE;
+ private LocalDateTime board_WRITEDATE;
 
-    private LocalDateTime MEMBER_JOINDATE;
-    private LocalDateTime MEMBER_LOGINDATE;
-    private LocalDateTime BOARD_WRITEDATE;
-
-    private Long BOARD_READCNT;
 }

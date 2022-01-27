@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class BoardController {
     @GetMapping("/")
     public String list(){
-        return "board/list.html";
+        return "board/index.html";
     }
-    @GetMapping("/post")
+    @GetMapping("/portfolioModal1")
     public String post(){
-        return "board/post.html";
+        return "board/list.html";
     }
 }
