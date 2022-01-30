@@ -25,6 +25,7 @@ public class Reply extends BaseEntity{
     @Column(length = 4, nullable = false)
     private  Long reply_PASSWORD;
 
+    private String ip;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member_NICKNAME;
