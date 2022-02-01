@@ -14,21 +14,21 @@ import javax.persistence.*;
 public class Reply extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long reply_ID;
+    private Long replyID;
 
     @Column(length = 300, nullable = false)
-    private  String reply_CONTENT;
+    private  String replyCONTENT;
 
     @Column(length = 3, nullable = false)
-    private  String reply_SERCERET;
+    private  String replySERCERET;
 
     @Column(length = 4, nullable = false)
-    private  Long reply_PASSWORD;
+    private  Long replyPASSWORD;
 
     private String ip;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Member member_NICKNAME;
+    private Member memberNICKNAME;
 
 
     @ManyToOne(fetch = FetchType.LAZY)

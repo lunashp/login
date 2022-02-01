@@ -8,37 +8,37 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 public class MemberDTO {
-    private String member_PW;
-    private String member_NAME;
-    private String member_EMAIL;
-    private String member_PHONE;
-    private String member_NICKNAME;
-    private String member_GENDER;
-    private String member_ADDRESS;
+    private String memberPW;
+    private String memberNAME;
+    private String memberEMAIL;
+    private String memberPHONE;
+    private String memberNICKNAME;
+    private String memberGENDER;
+    private String memberADDRESS;
 
-    private LocalDateTime member_LOGINDATE;
-    private LocalDateTime member_JOINDATE;
+    private LocalDateTime memberLOGINDATE;
+    private LocalDateTime memberJOINDATE;
 
     public Member toEntity(){
         return Member.builder()
-                .member_NAME(member_NAME)
-                .member_NICKNAME(member_NICKNAME)
-                .member_PHONE(member_PHONE)
-                .member_GENDER(member_GENDER)
-                .member_EMAIL(member_EMAIL)
-                .member_ADDRESS(member_ADDRESS)
-                .member_PW(member_PW)
+                .memberNAME(memberNAME)
+                .memberNICKNAME(memberNICKNAME)
+                .memberPHONE(memberPHONE)
+                .memberGENDER(memberGENDER)
+                .memberEMAIL(memberEMAIL)
+                .memberADDRESS(memberADDRESS)
+                .memberPW(memberPW)
                 .build();
     }
 
     @Builder
-    public MemberDTO(String member_ADDRESS, String member_EMAIL, String member_GENDER, String member_NAME, String member_NICKNAME, String member_PHONE, String member_PW){
-        this.member_ADDRESS = member_ADDRESS;
-        this.member_EMAIL = member_EMAIL;
-        this.member_GENDER = member_GENDER;
-        this.member_NAME = member_NAME;
-        this.member_NICKNAME = member_NICKNAME;
-        this.member_PHONE = member_PHONE;
-        this.member_PW = member_PW;
+    public MemberDTO(String memberADDRESS, String memberEMAIL, String memberGENDER, String memberNAME, String memberNICKNAME, String memberPHONE, String memberPW){
+        this.memberADDRESS = memberADDRESS;
+        this.memberEMAIL = memberEMAIL;
+        this.memberGENDER = memberGENDER;
+        this.memberNAME = memberNAME;
+        this.memberNICKNAME = memberNICKNAME;
+        this.memberPHONE = memberPHONE;
+        this.memberPW = memberPW;
     }
 }

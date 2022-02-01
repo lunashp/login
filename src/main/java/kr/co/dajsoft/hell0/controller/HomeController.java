@@ -17,7 +17,7 @@ public class HomeController {
     }
     @GetMapping("board/login")
     public String login(){
-        return "/board/login";
+        return "/login/index";
     }
     @GetMapping("board/member")
     public String member(){

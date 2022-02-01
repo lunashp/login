@@ -12,16 +12,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class MemberController {
     private MemberService memberService;
 
-    // 메인 페이지
-    @GetMapping("/")
-    public String index() {
-        return "/index";
-    }
+//    // 메인 페이지
+//    @GetMapping("/board/login")
+//    public String index() {
+//        return "/index";
+//    }
 
     // 회원가입 페이지
     @GetMapping("/login/signup")
     public String dispSignup() {
-        return "/signup";
+        return "/login/signup";
     }
 
     // 회원가입 처리
@@ -35,36 +35,36 @@ public class MemberController {
     // 로그인 페이지
     @GetMapping("/login/login")
     public String dispLogin() {
-        return "/login";
+        return "/login/login";
     }
 
     // 로그인 결과 페이지
     @GetMapping("/login/login/result")
     public String dispLoginResult() {
-        return "/loginSuccess";
+        return "/login/loginSuccess";
     }
 
     // 로그아웃 결과 페이지
     @GetMapping("/login/logout/result")
     public String dispLogout() {
-        return "/logout";
+        return "/login/logout";
     }
 
     // 접근 거부 페이지
     @GetMapping("/login/denied")
     public String dispDenied() {
-        return "/denied";
+        return "/login/denied";
     }
 
     // 내 정보 페이지
     @GetMapping("/login/info")
     public String dispMyInfo() {
-        return "/myinfo";
+        return "/login/myinfo";
     }
 
     // 어드민 페이지
     @GetMapping("/admin")
     public String dispAdmin() {
-        return "/admin";
+        return "/login/admin";
     }
 }

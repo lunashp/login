@@ -13,18 +13,18 @@ import javax.persistence.*;
 public class Board extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long board_NUMBER;
+    private Long boardNUMBER;
 
     @Column(length = 100, nullable = false)
-    private String board_TITLE;
+    private String boardTITLE;
     @Column(columnDefinition = "TEXT", nullable = false)
-    private String board_CONTENT;
+    private String boardCONTENT;
 
     @Column(length = 10, nullable = false)
-    private String board_NICKNAME;
+    private String boardNICKNAME;
 
     @Column
-    private Long board_READCNT;
+    private Long boardREADCNT;
 
     private String ip;
 

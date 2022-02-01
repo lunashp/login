@@ -15,25 +15,25 @@ import javax.persistence.*;
 public class Booking extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long booking_ID;
+    private Long bookingID;
 
     @Column(length = 30, nullable = false)
-    private String booking_NAME;
+    private String bookingNAME;
 
     @Column(length = 3, nullable = false)
-    private String booking_PAYMENT;
+    private String bookingPAYMENT;
 
     @Column(length = 60, nullable = false)
-    private String booking_PLACE_NAME;
+    private String bookingPLACENAME;
 
     @Column(length = 600, nullable = false)
-    private String booking_PLACE_ADDRESS;
+    private String bookingPLACEADDRESS;
 
     @Column(length = 20, nullable = false)
-    private int booking_TEAMMEMBER;
+    private int bookingTEAMMEMBER;
 
     private String ip;
 
     @ManyToOne
-    private Member member_NAME;
+    private Member memberNAME;
 }

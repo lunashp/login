@@ -30,14 +30,14 @@ public class MemberService implements UserDetailsService {
     public String joinUser(MemberDTO memberdto) {
         // 비밀번호 암호화
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        memberdto.setMember_PW(passwordEncoder.encode(memberdto.getMember_PW()));
+        memberdto.setMemberPW(passwordEncoder.encode(memberdto.getMemberPW()));
 
-        return memberRepository.save(memberdto.toEntity()).getMember_NICKNAME();
+        return memberRepository.save(memberdto.toEntity()).getMemberNICKNAME();
     }
 
     @Override
     public UserDetails loadUserByUsername(String userEmail) throws UsernameNotFoundException {
-        Optional<Member> userEntityWrapper = memberRepository.findByMember_EMAIL(userEmail);
+        Optional<Member> userEntityWrapper = memberRepository.findBymemberEMAIL(userEmail);
         Member userEntity = userEntityWrapper.get();
 
         List<GrantedAuthority> authorities = new ArrayList<>();
@@ -48,6 +48,6 @@ public class MemberService implements UserDetailsService {
             authorities.add(new SimpleGrantedAuthority(Role.MEMBER.getValue()));
         }
 
-        return new User(userEntity.getMember_EMAIL(), userEntity.getMember_PW(), authorities);
+        return new User(userEntity.getMemberEMAIL(), userEntity.getMemberPW(), authorities);
     }
 }

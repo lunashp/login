@@ -10,12 +10,12 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BookingDTO {
-    private Long booking_ID;
-    private String booking_PAYMENT;
-    private String booking_PLACE_NAME;
-    private String booking_PLACE_ADDRESS;
-    private Long booking_TEAMMEMBER;
-    private String booking_NAME;
-    private LocalDateTime booking_DATE;
-    private String booking_IP;
+    private Long bookingID;
+    private String bookingPAYMENT;
+    private String bookingPLACENAME;
+    private String bookingPLACEADDRESS;
+    private Long bookingTEAMMEMBER;
+    private String bookingNAME;
+    private LocalDateTime bookingDATE;
+    private String bookingIP;
 }

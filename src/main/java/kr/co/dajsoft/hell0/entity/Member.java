@@ -11,25 +11,25 @@ import java.util.List;
 @ToString
 public class Member extends BaseEntity {
     @Id
-    private String member_NICKNAME;
+    private String memberNICKNAME;
 
     @Column(length = 200, nullable = false)
-    private String member_PW;
+    private String memberPW;
 
     @Column(length = 30, nullable = false)
-    private String member_NAME;
+    private String memberNAME;
 
     @Column(length = 200, nullable = false)
-    private String member_EMAIL;
+    private String memberEMAIL;
 
     @Column(length = 11, nullable = false)
-    private String member_PHONE;
+    private String memberPHONE;
 
     @Column(length = 3, nullable = false)
-    private String member_GENDER;
+    private String memberGENDER;
 
     @Column(length = 600)
-    private String member_ADDRESS;
+    private String memberADDRESS;
 
     private String ip;
 
@@ -39,13 +39,13 @@ public class Member extends BaseEntity {
     private List<Board> board;
 
     @Builder
-    public Member(String member_ADDRESS, String member_EMAIL, String member_GENDER, String member_NAME, String member_NICKNAME, String member_PHONE, String member_PW) {
-        this.member_ADDRESS = member_ADDRESS;
-        this.member_EMAIL = member_EMAIL;
-        this.member_GENDER = member_GENDER;
-        this.member_NAME = member_NAME;
-        this.member_NICKNAME = member_NICKNAME;
-        this.member_PHONE = member_PHONE;
-        this.member_PW = member_PW;
+    public Member(String memberADDRESS, String memberEMAIL, String memberGENDER, String memberNAME, String memberNICKNAME, String memberPHONE, String memberPW) {
+        this.memberADDRESS = memberADDRESS;
+        this.memberEMAIL = memberEMAIL;
+        this.memberGENDER = memberGENDER;
+        this.memberNAME = memberNAME;
+        this.memberNICKNAME = memberNICKNAME;
+        this.memberPHONE = memberPHONE;
+        this.memberPW = memberPW;
     }
 }
