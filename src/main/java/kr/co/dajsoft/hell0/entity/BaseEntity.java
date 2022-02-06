@@ -23,7 +23,7 @@ public class BaseEntity {
     private LocalDateTime modDate;
 
 
-    @Column(length = 50, nullable = false)
+    @Column(length = 50)
     private  String ip;
 
 }

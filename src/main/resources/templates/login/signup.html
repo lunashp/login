@@ -1,19 +1,31 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="ko" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>회원가입 페이지</title>
+
+    <title>회원가입</title>
 </head>
 <body>
-    <h1>회원 가입</h1>
-    <hr>
+<h1>회원 가입</h1>
+<hr>
 
-    <form action="/login/signup" method="post">
-        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+<form th:action="@{/login/signup}" method="post" modelAttribute="memberdto">
+    <div>
+        <input type="text" name="memberEMAIL" th:value="${memberdto.memberEMAIL}" placeholder="이메일을 입력해주세요.">
+        <span th:text="${valid_memberEMAIL}"></span>
+    </div>
 
-        <input type="text" name="email" placeholder="이메일 입력해주세요">
-        <input type="password" name="password" placeholder="비밀번호">
-        <button type="submit">가입하기</button>
-    </form>
+    <div>
+        <input type="text" name="memberNICKNAME" th:value="${memberdto.memberNICKNAME}" placeholder="닉네임을 입력해주세요.">
+        <span th:text="${valid_memberNICKNAME}"></span>
+    </div>
+
+    <div>
+        <input type="password" name="memberPW" placeholder="비밀번호">
+        <span th:text="${valid_memberPW}"></span>
+    </div>
+
+    <button>등록</button>
+</form>
 </body>
 </html>

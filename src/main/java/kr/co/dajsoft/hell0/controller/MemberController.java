@@ -4,8 +4,13 @@ import kr.co.dajsoft.hell0.dto.MemberDTO;
 import kr.co.dajsoft.hell0.service.MemberService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import javax.validation.Valid;
+import java.util.Map;
 
 @Controller
 @AllArgsConstructor
@@ -18,25 +23,36 @@ public class MemberController {
 //        return "/index";
 //    }
 
-    // 회원가입 페이지
-    @GetMapping("/login/signup")
-    public String dispSignup() {
-        return "/login/signup";
+
+    @GetMapping("login/signup")
+    public String dispSignup(MemberDTO memberdto) {
+        return "login/signup";
     }
 
-    // 회원가입 처리
-    @PostMapping("/login/signup")
-    public String execSignup(MemberDTO memberdto) {
-        memberService.joinUser(memberdto);
+    @PostMapping("login/signup")
+    public String execSignup(@ModelAttribute @Valid MemberDTO memberdto, Errors errors, Model model) {
+        if (errors.hasErrors()) {
+            // 회원가입 실패시, 입력 데이터를 유지
+            model.addAttribute("MemberDTO", memberdto);
 
-        return "redirect:/login/login";
+            // 유효성 통과 못한 필드와 메시지를 핸들링
+            Map<String, String> validatorResult = memberService.validateHandling(errors);
+            for (String key : validatorResult.keySet()) {
+                model.addAttribute(key, validatorResult.get(key));
+            }
+
+            return "login/signup";
+        }
+
+        memberService.signup(memberdto);
+        return "login/login";
     }
 
-    // 로그인 페이지
     @GetMapping("/login/login")
-    public String dispLogin() {
-        return "/login/login";
+    public String displogin() {
+        return "login/login";
     }
+
 
     // 로그인 결과 페이지
     @GetMapping("/login/login/result")
