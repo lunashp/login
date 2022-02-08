@@ -6,8 +6,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import javax.validation.Valid;
 import java.util.Map;
@@ -24,13 +24,13 @@ public class MemberController {
 //    }
 
 
-    @GetMapping("login/signup")
+    @GetMapping("/login/signup")
     public String dispSignup(MemberDTO memberdto) {
-        return "login/signup";
+        return "/login/signup";
     }
 
-    @PostMapping("login/signup")
-    public String execSignup(@ModelAttribute @Valid MemberDTO memberdto, Errors errors, Model model) {
+    @PostMapping("/login/signup")
+    public String execSignup(@Validated MemberDTO memberdto, Errors errors, Model model) {
         if (errors.hasErrors()) {
             // 회원가입 실패시, 입력 데이터를 유지
             model.addAttribute("MemberDTO", memberdto);
@@ -41,16 +41,16 @@ public class MemberController {
                 model.addAttribute(key, validatorResult.get(key));
             }
 
-            return "login/signup";
+            return "/login/signup";
         }
 
         memberService.signup(memberdto);
-        return "login/login";
+        return "/login/login";
     }
 
     @GetMapping("/login/login")
     public String displogin() {
-        return "login/login";
+        return "/login/login";
     }
 
 

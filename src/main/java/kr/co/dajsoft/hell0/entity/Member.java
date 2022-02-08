@@ -31,13 +31,6 @@ public class Member extends BaseEntity {
     @Column(length = 600)
     private String memberADDRESS;
 
-    private String ip;
-
-    private String writer;
-
-    @OneToMany
-    private List<Board> board;
-
     @Builder
     public Member(String memberADDRESS, String memberEMAIL, String memberGENDER, String memberNAME, String memberNICKNAME, String memberPHONE, String memberPW) {
         this.memberADDRESS = memberADDRESS;
