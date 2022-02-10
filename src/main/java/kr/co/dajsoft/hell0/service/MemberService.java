@@ -5,6 +5,8 @@ import kr.co.dajsoft.hell0.entity.Member;
 import kr.co.dajsoft.hell0.repository.MemberRepository;
 import kr.co.dajsoft.hell0.role.Role;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -22,10 +24,30 @@ import java.util.*;
 @Service
 @AllArgsConstructor
 public class MemberService implements UserDetailsService {
+    private final MemberRepository memberRepository;
+
+//        Optional<Member> userEntityWrapper = memberRepository.findBymemberEMAIL(username);
+//        Member userEntity = userEntityWrapper.get();
+//
+//        List<GrantedAuthority> authorities = new ArrayList<>();
+
+//        if (("admin@example.com").equals(username)) {
+//            authorities.add(new SimpleGrantedAuthority(Role.ADMIN.getValue()));
+//        } else {
+//            authorities.add(new SimpleGrantedAuthority(Role.MEMBER.getValue()));
+//        }
+//        System.out.println(userEntity.getMemberEMAIL());
+//        System.out.println(userEntity.getMemberPW());
+//        return new User(userEntity.getMemberEMAIL(), userEntity.getMemberPW(), authorities);
+//    }
+
+
     //회원가입 시, 유효성 체크
+    @Transactional(readOnly = true)
     public Map<String, String> validateHandling(Errors errors) {
         Map<String, String> validatorResult = new HashMap<>();
 
+        //유효성 검사에 실패한 필드 목록을 받음
         for (FieldError error : errors.getFieldErrors()) {
             String validKeyName = String.format("valid_%s", error.getField());
             validatorResult.put(validKeyName, error.getDefaultMessage());
@@ -40,31 +62,29 @@ public class MemberService implements UserDetailsService {
 
 
 
-
-    private MemberRepository memberRepository;
-
     @Transactional
     public String joinUser(MemberDTO memberdto) {
         // 비밀번호 암호화
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         memberdto.setMemberPW(passwordEncoder.encode(memberdto.getMemberPW()));
-        System.out.println(memberdto.getMemberPW());
         return memberRepository.save(memberdto.toEntity()).getMemberNICKNAME();
     }
 
+
+
     @Override
-    public UserDetails loadUserByUsername(String userEmail) throws UsernameNotFoundException {
-        Optional<Member> userEntityWrapper = memberRepository.findBymemberEMAIL(userEmail);
-        Member userEntity = userEntityWrapper.get();
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Optional<Member> memberWrapper = memberRepository.findBymemberEMAIL(username);
+        Member member = memberWrapper.get();
 
         List<GrantedAuthority> authorities = new ArrayList<>();
-
-        if (("admin@example.com").equals(userEmail)) {
+        if (("admin@example.com").equals(username)) {
             authorities.add(new SimpleGrantedAuthority(Role.ADMIN.getValue()));
         } else {
             authorities.add(new SimpleGrantedAuthority(Role.MEMBER.getValue()));
         }
 
-        return new User(userEntity.getMemberEMAIL(), userEntity.getMemberPW(), authorities);
+        return new User(member.getMemberEMAIL(), member.getMemberPW(), authorities);
     }
+
 }

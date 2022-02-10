@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @ToString
 @Data
 @NoArgsConstructor
+
 public class MemberDTO {
 
     @NotBlank(message = "비밀번호는 필수 입력 값입니다.")

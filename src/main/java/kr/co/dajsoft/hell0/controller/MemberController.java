@@ -30,7 +30,7 @@ public class MemberController {
     }
 
     @PostMapping("/login/signup")
-    public String execSignup(@Validated MemberDTO memberdto, Errors errors, Model model) {
+    public String execSignup(@Valid MemberDTO memberdto, Errors errors, Model model) {
         if (errors.hasErrors()) {
             // 회원가입 실패시, 입력 데이터를 유지
             model.addAttribute("memberdto", memberdto);
