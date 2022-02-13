@@ -33,8 +33,8 @@ public class MemberDTO {
 
     private String memberADDRESS;
 
-    private LocalDateTime memberLOGINDATE;
-    private LocalDateTime memberJOINDATE;
+//    private LocalDateTime regd;
+//    private LocalDateTime modd;
 
     public Member toEntity(){
         return Member.builder()

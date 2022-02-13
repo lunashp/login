@@ -6,9 +6,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import javax.validation.Valid;
 import java.util.Map;
 
@@ -44,7 +44,7 @@ public class MemberController {
             return "/login/signup";
         }
 
-        memberService.signup(memberdto);
+        memberService.joinUser(memberdto);
         return "/login/login";
     }
 
