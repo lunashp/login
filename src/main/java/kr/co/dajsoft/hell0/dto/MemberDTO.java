@@ -36,6 +36,7 @@ public class MemberDTO {
 //    private LocalDateTime regd;
 //    private LocalDateTime modd;
 
+    //비밀번호 암호화
     public Member toEntity(){
         return Member.builder()
                 .memberNAME(memberNAME)

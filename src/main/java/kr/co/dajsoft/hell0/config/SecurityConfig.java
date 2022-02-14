@@ -38,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 // 페이지 권한 설정
-                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/login/admin/**").hasRole("ADMIN")
                 .antMatchers("/user/myinfo").hasRole("MEMBER")
                 .antMatchers("/**").permitAll()
                 .and() // 로그인 설정
@@ -60,4 +60,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(memberService).passwordEncoder(passwordEncoder());
     }
+
 }
