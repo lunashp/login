@@ -17,13 +17,6 @@ import java.util.Map;
 public class MemberController {
     private MemberService memberService;
 
-//    // 메인 페이지
-//    @GetMapping("/board/login")
-//    public String index() {
-//        return "/index";
-//    }
-
-
     @GetMapping("/login/signup")
     public String dispSignup(MemberDTO memberdto) {
         return "/login/signup";
@@ -82,5 +75,17 @@ public class MemberController {
     @GetMapping("/admin")
     public String dispAdmin() {
         return "/login/admin";
+    }
+
+    // 정보 수정 페이지
+    @GetMapping("/login/modify")
+    public String dispModify() {
+        return "/login/modify";
+    }
+
+    // 회원 탈퇴 페이지
+    @GetMapping("/login/delete")
+    public String dispDelete() {
+        return "/login/delete";
     }
 }

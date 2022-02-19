@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<th:block th:replace="~{/layout/basic:: setContent(~{this::content} )}">
+    <th:block th:fragment="content">
 <head>
     <meta charset="UTF-8">
     <title>메인</title>
@@ -10,7 +12,7 @@
     <a sec:authorize="isAnonymous()" th:href="@{/login/login}">로그인</a>
     <a sec:authorize="isAuthenticated()" th:href="@{/login/logout}">로그아웃</a>
     <a sec:authorize="isAnonymous()" th:href="@{/login/signup}">회원가입</a>
-    <a sec:authorize="hasRole('ROLE_MEMBER')" th:href="@{/login/info}">내정보</a>
-    <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin}">어드민</a>
 </body>
+    </th:block>
+</th:block>
 </html>

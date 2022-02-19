@@ -32,7 +32,6 @@ public class Booking extends BaseEntity{
     @Column(length = 20, nullable = false)
     private int bookingTEAMMEMBER;
 
-    private String ip;
 
     @ManyToOne
     private Member memberNAME;

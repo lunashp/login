@@ -5,12 +5,9 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.List;
 
-@Builder
-@AllArgsConstructor
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@ToString
 public class Member extends BaseEntity {
     @Id
     private String memberNICKNAME;
@@ -33,7 +30,6 @@ public class Member extends BaseEntity {
     @Column(length = 600)
     private String memberADDRESS;
 
-    private boolean fromSocial;
 
     @Builder
     public Member(String memberADDRESS, String memberEMAIL, String memberGENDER, String memberNAME, String memberNICKNAME, String memberPHONE, String memberPW) {

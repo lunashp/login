@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{/layout/basic:: setContent(~{this::content} )}">
+    <th:block th:fragment="content">
 <head>
     <meta charset="UTF-8">
 
@@ -43,4 +45,6 @@
     <button>등록</button>
 </form>
 </body>
+    </th:block>
+</th:block>
 </html>
