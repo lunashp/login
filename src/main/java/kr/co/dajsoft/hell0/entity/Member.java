@@ -8,6 +8,7 @@ import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Builder
 public class Member extends BaseEntity {
     @Id
     private String memberNICKNAME;
@@ -39,6 +40,10 @@ public class Member extends BaseEntity {
         this.memberNAME = memberNAME;
         this.memberNICKNAME = memberNICKNAME;
         this.memberPHONE = memberPHONE;
+        this.memberPW = memberPW;
+    }
+    public void modify(String memberEMAIL, String memberPW) {
+        this.memberEMAIL = memberEMAIL;
         this.memberPW = memberPW;
     }
 }

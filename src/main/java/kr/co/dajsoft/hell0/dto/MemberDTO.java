@@ -6,12 +6,13 @@ import lombok.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 @ToString
 @Data
 @NoArgsConstructor
 
-public class MemberDTO {
+public class MemberDTO implements Serializable {
 
     @NotBlank(message = "비밀번호는 필수 입력 값입니다.")
     @Pattern(regexp="(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\\W)(?=\\S+$).{8,20}",
@@ -49,14 +50,25 @@ public class MemberDTO {
                 .build();
     }
 
-    @Builder
-    public MemberDTO(String memberADDRESS, String memberEMAIL, String memberGENDER, String memberNAME, String memberNICKNAME, String memberPHONE, String memberPW){
-        this.memberADDRESS = memberADDRESS;
-        this.memberEMAIL = memberEMAIL;
-        this.memberGENDER = memberGENDER;
-        this.memberNAME = memberNAME;
-        this.memberNICKNAME = memberNICKNAME;
-        this.memberPHONE = memberPHONE;
-        this.memberPW = memberPW;
+//    @Builder
+//    public MemberDTO(String memberADDRESS, String memberEMAIL, String memberGENDER, String memberNAME, String memberNICKNAME, String memberPHONE, String memberPW){
+//        this.memberADDRESS = memberADDRESS;
+//        this.memberEMAIL = memberEMAIL;
+//        this.memberGENDER = memberGENDER;
+//        this.memberNAME = memberNAME;
+//        this.memberNICKNAME = memberNICKNAME;
+//        this.memberPHONE = memberPHONE;
+//        this.memberPW = memberPW;
+
+        //entity -> dto
+    public MemberDTO(Member member){
+            this.memberADDRESS = member.getMemberADDRESS();
+            this.memberEMAIL = member.getMemberEMAIL();
+            this.memberGENDER = member.getMemberGENDER();
+            this.memberNAME = member.getMemberNAME();
+            this.memberNICKNAME = member.getMemberNICKNAME();
+            this.memberPHONE = member.getMemberPHONE();
+            this.memberPW = member.getMemberPW();
+
     }
 }

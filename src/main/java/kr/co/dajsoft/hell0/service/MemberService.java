@@ -7,6 +7,7 @@ import kr.co.dajsoft.hell0.role.Role;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -26,23 +27,9 @@ import java.util.*;
 public class MemberService implements UserDetailsService {
     private final MemberRepository memberRepository;
 
-//        Optional<Member> userEntityWrapper = memberRepository.findBymemberEMAIL(username);
-//        Member userEntity = userEntityWrapper.get();
-//
-//        List<GrantedAuthority> authorities = new ArrayList<>();
+//    private final BCryptPasswordEncoder passwordEncoder;
 
-//        if (("admin@example.com").equals(username)) {
-//            authorities.add(new SimpleGrantedAuthority(Role.ADMIN.getValue()));
-//        } else {
-//            authorities.add(new SimpleGrantedAuthority(Role.MEMBER.getValue()));
-//        }
-//        System.out.println(userEntity.getMemberEMAIL());
-//        System.out.println(userEntity.getMemberPW());
-//        return new User(userEntity.getMemberEMAIL(), userEntity.getMemberPW(), authorities);
-//    }
-
-
-    //회원가입 시, 유효성 체크
+     //회원가입 시, 유효성 체크
     @Transactional(readOnly = true)
     public Map<String, String> validateHandling(Errors errors) {
         Map<String, String> validatorResult = new HashMap<>();
@@ -54,13 +41,6 @@ public class MemberService implements UserDetailsService {
         }
         return validatorResult;
     }
-
-//    //회원가입
-//    public void signup(MemberDTO memberdto) {
-//        //회원가입 비지니스 로직 구현
-//    }
-
-
 
     @Transactional
     public String joinUser(MemberDTO memberdto) {
@@ -84,10 +64,16 @@ public class MemberService implements UserDetailsService {
         } else {
             authorities.add(new SimpleGrantedAuthority(Role.MEMBER.getValue()));
         }
-        System.out.println(member.getMemberEMAIL());
-        System.out.println(member.getMemberPW());
-        System.out.println(authorities);
         return new User(member.getMemberEMAIL(), member.getMemberPW(), authorities);
     }
 
+    //회원 수정(dirty checking)
+    @Transactional
+    public void modify(MemberDTO memberdto){
+        Member member = memberRepository.findBymemberEMAIL(memberdto.toEntity().getMemberEMAIL()).orElseThrow(() ->
+                new IllegalArgumentException("해당 회원이 존재하지 않습니다"));
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encPassword = passwordEncoder.encode(memberdto.getMemberPW());
+        member.modify(memberdto.getMemberEMAIL(), encPassword);
+    }
 }
