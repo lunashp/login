@@ -42,8 +42,8 @@ public class Member extends BaseEntity {
         this.memberPHONE = memberPHONE;
         this.memberPW = memberPW;
     }
-    public void modify(String memberEMAIL, String memberPW) {
-        this.memberEMAIL = memberEMAIL;
-        this.memberPW = memberPW;
-    }
+//    public void modify(String memberEMAIL, String memberPW) {
+//        this.memberEMAIL = memberEMAIL;
+//        this.memberPW = memberPW;
+//    }
 }

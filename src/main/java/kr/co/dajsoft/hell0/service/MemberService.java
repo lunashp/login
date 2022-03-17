@@ -25,11 +25,11 @@ import java.util.*;
 @Service
 @AllArgsConstructor
 public class MemberService implements UserDetailsService {
-    private final MemberRepository memberRepository;
+    private MemberRepository memberRepository;
 
 //    private final BCryptPasswordEncoder passwordEncoder;
 
-     //회원가입 시, 유효성 체크
+    //회원가입 시, 유효성 체크
     @Transactional(readOnly = true)
     public Map<String, String> validateHandling(Errors errors) {
         Map<String, String> validatorResult = new HashMap<>();
@@ -51,7 +51,6 @@ public class MemberService implements UserDetailsService {
     }
 
 
-
     @Override
     public UserDetails loadUserByUsername(String memberEMAIL) throws UsernameNotFoundException {
         Optional<Member> memberWrapper = memberRepository.findBymemberEMAIL(memberEMAIL);
@@ -66,14 +65,15 @@ public class MemberService implements UserDetailsService {
         }
         return new User(member.getMemberEMAIL(), member.getMemberPW(), authorities);
     }
+}
 
     //회원 수정(dirty checking)
-    @Transactional
-    public void modify(MemberDTO memberdto){
-        Member member = memberRepository.findBymemberEMAIL(memberdto.toEntity().getMemberEMAIL()).orElseThrow(() ->
-                new IllegalArgumentException("해당 회원이 존재하지 않습니다"));
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String encPassword = passwordEncoder.encode(memberdto.getMemberPW());
-        member.modify(memberdto.getMemberEMAIL(), encPassword);
-    }
-}
+//    @Transactional
+//    public void modify(MemberDTO memberdto){
+//        Member member = memberRepository.findBymemberEMAIL(memberdto.toEntity().getMemberEMAIL()).orElseThrow(() ->
+//                new IllegalArgumentException("해당 회원이 존재하지 않습니다"));
+//        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//        String encPassword = passwordEncoder.encode(memberdto.getMemberPW());
+//        member.modify(memberdto.getMemberEMAIL(), encPassword);
+//    }
+
